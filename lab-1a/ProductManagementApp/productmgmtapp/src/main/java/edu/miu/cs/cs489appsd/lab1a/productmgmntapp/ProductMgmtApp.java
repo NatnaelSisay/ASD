@@ -2,10 +2,14 @@ package edu.miu.cs.cs489appsd.lab1a.productmgmntapp;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.thoughtworks.xstream.XStream;
 import edu.miu.cs.cs489appsd.lab1a.productmgmntapp.model.LocalDateTimeAdapter;
 import edu.miu.cs.cs489appsd.lab1a.productmgmntapp.model.Product;
+import edu.miu.cs.cs489appsd.lab1a.productmgmntapp.model.Products;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -32,38 +36,52 @@ public class ProductMgmtApp {
                 .sorted(Comparator.comparing(Product::getName))
                 .collect(Collectors.toList());
 
-
 //        JSON
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapter(LocalDate.class, new LocalDateTimeAdapter())
-//                .setPrettyPrinting()
-                .create();
-        String jsonRepresentation = gson.toJson(sortedProduct);
+        String jsonRepresentation = convertToJson(sortedProduct);
         decoratedPrint(jsonRepresentation, "Print in JSON Format");
 
-
 //        XML
-        XStream xstream = new XStream();
-        xstream.alias("product", Product.class);
-        StringBuilder ps = new StringBuilder();
-        for (Product p : products) {
-            ps.append(xstream.toXML(p));
-
-        }
-        String val = ps.toString();
-        val = "<products>\n" + val;
-        val = val + "\n</products>";
-        decoratedPrint(val, "Print in XML Format");
-
+        String xmlRepresentation = convertToXML(new Products(sortedProduct));
+        decoratedPrint(xmlRepresentation, "Print in XML Format");
 
 //        CSV
-        String objectsCommaSeparated = products.stream()
-                .map(product -> product.toCsv())
-                .collect(Collectors.joining("\n"));
+        String objectsCommaSeparated = convertToCSV(products);
         decoratedPrint(objectsCommaSeparated, "Print in CSV Format");
+    }
+
+
+    private static String convertToJson(List<Product> products) {
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateTimeAdapter())
+                .setPrettyPrinting()
+                .create();
+        String jsonRepresentation = gson.toJson(products);
+        return jsonRepresentation;
+    }
+
+    private static String convertToXML(Products products) {
+        try {
+            JAXBContext context = JAXBContext.newInstance(Products.class);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            StringWriter writer = new StringWriter();
+            marshaller.marshal(products, writer);
+            String result = writer.toString();
+            return result;
+        } catch (JAXBException e) {
+            System.out.println(e);
+        }
+        return "";
 
     }
 
+    private static String convertToCSV(List<Product> products) {
+        String objectsCommaSeparated = products.stream()
+                .map(product -> product.toCsv())
+                .collect(Collectors.joining("\n"));
+        return objectsCommaSeparated;
+    }
 
     private static void decoratedPrint(String result, String message) {
         System.out.println(message);
@@ -71,15 +89,5 @@ public class ProductMgmtApp {
         System.out.println(result);
         System.out.println("----------------------");
         System.out.println();
-    }
-}
-
-class Person {
-    private String firstname;
-    private String lastname;
-
-    public Person(String firstname, String lastname) {
-        this.firstname = firstname;
-        this.lastname = lastname;
     }
 }
