@@ -14,4 +14,5 @@ public class Employee {
   private String lastName;
   private LocalDate employeeDate;
   private BigDecimal yearlySalary;
+  private Pension pension;
 }
