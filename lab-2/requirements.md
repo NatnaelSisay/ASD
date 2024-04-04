@@ -1,3 +1,5 @@
+#### Requirements
+
 - Office manager register Denstists to join their network
 - Office maanager enroll Patients
 - Patient request an appointment
@@ -6,9 +8,12 @@
 - Dentist see details of patients scheduled.
 - Appointment is made for specific date and time, dentist is assigned,
   and the patient will be treated at surgery location
-- System provide info about Surgery, - name, location address, phone number.
+- **System provide info about Surgery, - name, location address, phone number.**
 - Patient sign-in and view appointment and details of dentist.
 - Patient sshould be able to request o cancel or change appointments.
+
+#### Buisness requirements
+
 - Dentist can't be given more than 5 appoitment / week
 - Patient can't request appointment of they have unpaid bill for dental
   service they have recieved.
@@ -20,3 +25,5 @@ Dentist
 Patient
 
 - firstName, lastName, phone number, email, Mailing address, DOB
+
+[Draw.io](https://drive.google.com/file/d/1pjxpC7WEpWecq3i1HEd4aTggCfQm4pQj/view?usp=sharing)
