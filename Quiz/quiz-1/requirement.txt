@@ -1,0 +1,15 @@
+Requirements
+
+- user can search through contacts
+- User can add contact
+- user can upload existing contacts
+- user can delete old contacts ( how do we determine old? )
+- user can merge duplicate contacts
+
+Entities
+  - Contact
+    - firstName, lastName, company, jobTitle, phoneNumbers, emails
+    - phoneNumber
+      - label, number
+    - email
+      - label, emailAddress
