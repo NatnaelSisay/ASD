@@ -13,9 +13,14 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Patient {
-    @ManyToOne
+    @OneToOne
+    @JoinColumn(name = "address_id")
     Address address;
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.PERSIST)
+
+    @OneToMany(
+            mappedBy = "patient",
+            cascade = CascadeType.PERSIST
+    )
     List<Appointment> appointments;
 
     @Id
@@ -29,4 +34,15 @@ public class Patient {
     private LocalDate dateOfBirth;
     private String email;
     private String password;
+
+    public Patient(String patientNo, String firstName, String lastName, String phoneNumber, String role, LocalDate dateOfBirth, String email, String password) {
+        this.patientNo = patientNo;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+        this.password = password;
+    }
 }

@@ -12,7 +12,8 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Surgery {
-    @ManyToOne
+    @OneToOne
+    @JoinColumn(name = "address_id")
     Address address;
     @OneToMany(mappedBy = "surgery", cascade = CascadeType.PERSIST)
     List<Appointment> appointments;
@@ -23,4 +24,10 @@ public class Surgery {
     private String surgeryNo;
     private String name;
     private String phoneNumber;
+
+    public Surgery(String surgeryNo, String name, String phoneNumber) {
+        this.surgeryNo = surgeryNo;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+    }
 }

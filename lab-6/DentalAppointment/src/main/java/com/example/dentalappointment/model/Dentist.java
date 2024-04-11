@@ -12,7 +12,10 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Dentist {
-    @OneToMany(mappedBy = "dentist", cascade = CascadeType.PERSIST)
+    @OneToMany(
+            mappedBy = "dentist",
+            cascade = CascadeType.PERSIST
+    )
     List<Appointment> appointments;
 
     @Id
@@ -25,4 +28,14 @@ public class Dentist {
     private String specialization;
     private String email;
     private String password;
+
+    public Dentist(String firstName, String lastName, String phoneNumber, String role, String specialization, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+        this.specialization = specialization;
+        this.email = email;
+        this.password = password;
+    }
 }

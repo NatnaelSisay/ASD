@@ -15,9 +15,11 @@ public class Appointment {
     @ManyToOne
     @JoinColumn(name = "surgery_id")
     Surgery surgery;
+
     @ManyToOne
     @JoinColumn(name = "patient_id")
     Patient patient;
+
     @ManyToOne
     @JoinColumn(name = "dentist_id")
     Dentist dentist;
@@ -26,4 +28,8 @@ public class Appointment {
     @GeneratedValue
     private Long id;
     private LocalDate date;
+
+    public Appointment(LocalDate date) {
+        this.date = date;
+    }
 }
