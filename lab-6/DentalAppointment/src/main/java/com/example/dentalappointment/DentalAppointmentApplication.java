@@ -1,6 +1,8 @@
 package com.example.dentalappointment;
 
 import com.example.dentalappointment.model.*;
+import com.example.dentalappointment.services.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,6 +11,16 @@ import java.time.LocalDate;
 
 @SpringBootApplication
 public class DentalAppointmentApplication implements CommandLineRunner {
+    @Autowired
+    AddressService addressService;
+    @Autowired
+    AppointmentService appointmentService;
+    @Autowired
+    DentistService dentistService;
+    @Autowired
+    PatientService patientService;
+    @Autowired
+    SurgeryService surgeryService;
 
     public static void main(String[] args) {
         SpringApplication.run(DentalAppointmentApplication.class, args);
@@ -64,5 +76,20 @@ public class DentalAppointmentApplication implements CommandLineRunner {
         var s3 = new Surgery(null, null, null, "S13", "Ear",
                 "4344-3434-3434"
         );
+
+//        construct
+        apt1.setDentist(dentist1);
+        apt1.setPatient(patient1);
+        apt1.setSurgery(s1);
+
+        apt2.setDentist(dentist2);
+        apt2.setPatient(patient2);
+        apt2.setSurgery(s2);
+//
+
+        dentistService.addDentist(dentist1);
+        patientService.addPatient(patient1);
+        surgeryService.addSurgery(s1);
+        appointmentService.addAppointment(apt1);
     }
 }

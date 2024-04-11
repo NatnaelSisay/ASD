@@ -12,9 +12,9 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Surgery {
-    @OneToOne
+    @ManyToOne
     Address address;
-    @OneToMany(mappedBy = "")
+    @OneToMany(mappedBy = "surgery", cascade = CascadeType.PERSIST)
     List<Appointment> appointments;
 
     @Id

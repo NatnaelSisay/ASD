@@ -13,10 +13,11 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Patient {
-    @OneToOne
+    @ManyToOne
     Address address;
-    @OneToMany
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.PERSIST)
     List<Appointment> appointments;
+
     @Id
     @GeneratedValue
     private Long id;

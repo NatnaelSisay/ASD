@@ -1,9 +1,6 @@
 package com.example.dentalappointment.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,11 +12,14 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 public class Appointment {
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "surgery_id")
     Surgery surgery;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "patient_id")
     Patient patient;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "dentist_id")
     Dentist dentist;
 
     @Id
