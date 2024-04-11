@@ -10,7 +10,7 @@ import lombok.Data;
 public class Address {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String street;
     private String city;
     private String state;

@@ -20,6 +20,6 @@ public class Appointment {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private LocalDate date;
 }

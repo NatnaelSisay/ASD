@@ -15,7 +15,7 @@ public class Patient {
     List<Appointment> appointments;
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String phoneNumber;

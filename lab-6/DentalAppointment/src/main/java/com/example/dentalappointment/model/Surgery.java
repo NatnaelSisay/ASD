@@ -10,12 +10,13 @@ import java.util.List;
 public class Surgery {
     @OneToOne
     Address address;
-    @OneToMany
+    @OneToMany(mappedBy = "")
     List<Appointment> appointments;
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
+    private String surgeryNo;
     private String name;
     private String phoneNumber;
 }
