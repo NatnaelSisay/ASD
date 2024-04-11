@@ -62,18 +62,21 @@ public class DentalAppointmentApplication implements CommandLineRunner {
         var s3 = new Surgery("S13", "Ear", "4344-3434-3434");
 
 //        construct
+        dentist1 = dentistService.addDentist(dentist1);
+        patient1 = patientService.addPatient(patient1);
+        s1 = surgeryService.addSurgery(s1);
         apt1.setDentist(dentist1);
         apt1.setPatient(patient1);
         apt1.setSurgery(s1);
 
+        dentist2 = dentistService.addDentist(dentist2);
+        patient2 = patientService.addPatient(patient2);
+        s2 = surgeryService.addSurgery(s2);
         apt2.setDentist(dentist2);
         apt2.setPatient(patient2);
         apt2.setSurgery(s2);
 //
-
-//        dentistService.addDentist(dentist1);
-//        patientService.addPatient(patient1);
-//        surgeryService.addSurgery(s1);
-//        appointmentService.addAppointment(apt1);
+        appointmentService.addAppointment(apt1);
+        appointmentService.addAppointment(apt2);
     }
 }
