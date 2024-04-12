@@ -28,7 +28,10 @@ public class DentalAppointmentApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        add address
+    }
+
+    public void sampleTestData() {
+        //        add address
         var addr1 = new Address("1000N", "Fairfield", "IA", "52557");
         var addr2 = new Address("1001N", "Fairfield", "IA", "52557");
         var addr3 = new Address("1002N", "Fairfield", "IA", "52557");
