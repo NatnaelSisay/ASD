@@ -2,11 +2,11 @@ package com.example.dentalappointment.controllers;
 
 import com.example.dentalappointment.dtos.PatientDTO;
 import com.example.dentalappointment.dtos.patient.PatientDTOAddress;
+import com.example.dentalappointment.exceptions.ItemNotFound;
 import com.example.dentalappointment.model.Patient;
 import com.example.dentalappointment.services.PatientService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,11 +28,10 @@ public class PatientController {
         return ResponseEntity.ok(new Response<>(patients));
     }
 
-    //    get patient
     @GetMapping("/{patientId}")
-    public ResponseEntity<PatientDTO> findPatient(@RequestParam Long patientId) {
-        PatientDTO patient = patientService.findPatient(patientId);
-        return ResponseEntity.ok(patient);
+    public ResponseEntity<ResponseUnique<PatientDTOAddress>> findPatient(@PathVariable Long patientId) throws ItemNotFound {
+        PatientDTOAddress patient = patientService.findPatient(patientId);
+        return ResponseEntity.ok(new ResponseUnique<>(patient));
     }
 
     //    add patient
@@ -66,8 +65,13 @@ public class PatientController {
 }
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 class Response<T> {
     List<T> data;
+}
+
+@Data
+@AllArgsConstructor
+class ResponseUnique<T> {
+    T data;
 }
