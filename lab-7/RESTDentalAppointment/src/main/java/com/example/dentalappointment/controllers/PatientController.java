@@ -1,6 +1,7 @@
 package com.example.dentalappointment.controllers;
 
 import com.example.dentalappointment.dtos.PatientDTO;
+import com.example.dentalappointment.dtos.patient.PatientDTOAddress;
 import com.example.dentalappointment.model.Patient;
 import com.example.dentalappointment.services.PatientService;
 import lombok.AllArgsConstructor;
@@ -22,9 +23,9 @@ public class PatientController {
 
     //    get patients
     @GetMapping
-    public ResponseEntity<Patients> findAllPatients() {
-        List<PatientDTO> patients = patientService.getPatientsSortedByLastName();
-        return ResponseEntity.ok(new Patients(patients));
+    public ResponseEntity<Response<PatientDTOAddress>> findAllPatients() {
+        List<PatientDTOAddress> patients = patientService.getPatientsSortedByLastName();
+        return ResponseEntity.ok(new Response<>(patients));
     }
 
     //    get patient
@@ -67,6 +68,6 @@ public class PatientController {
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-class Patients {
-    List<PatientDTO> patients;
+class Response<T> {
+    List<T> data;
 }

@@ -1,6 +1,7 @@
 package com.example.dentalappointment.services;
 
 import com.example.dentalappointment.dtos.PatientDTO;
+import com.example.dentalappointment.dtos.patient.PatientDTOAddress;
 import com.example.dentalappointment.model.Patient;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.List;
 public interface PatientService {
     Patient addPatient(Patient patient);
 
-    List<PatientDTO> getPatientsSortedByLastName();
+    List<PatientDTOAddress> getPatientsSortedByLastName();
 
     PatientDTO findPatient(Long patientId);
 

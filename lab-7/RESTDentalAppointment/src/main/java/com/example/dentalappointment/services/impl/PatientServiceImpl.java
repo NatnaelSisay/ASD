@@ -1,6 +1,8 @@
 package com.example.dentalappointment.services.impl;
 
 import com.example.dentalappointment.dtos.PatientDTO;
+import com.example.dentalappointment.dtos.patient.PatientAdapter;
+import com.example.dentalappointment.dtos.patient.PatientDTOAddress;
 import com.example.dentalappointment.model.Patient;
 import com.example.dentalappointment.repositories.PatientRepository;
 import com.example.dentalappointment.services.PatientService;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,8 +32,15 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public List<PatientDTO> getPatientsSortedByLastName() {
-        return null;
+    public List<PatientDTOAddress> getPatientsSortedByLastName() {
+        List<Patient> patients = patientRepository.findAll();
+        List<PatientDTOAddress> result = new ArrayList<>();
+
+        for (Patient p : patients) {
+            result.add(PatientAdapter.getPatientWithAddress(p));
+        }
+
+        return result;
     }
 
     @Override
