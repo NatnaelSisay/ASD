@@ -1,11 +1,14 @@
 package com.example.dentalappointment.services.impl;
 
+import com.example.dentalappointment.dtos.PatientDTO;
 import com.example.dentalappointment.model.Patient;
 import com.example.dentalappointment.repositories.PatientRepository;
 import com.example.dentalappointment.services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -15,6 +18,35 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public Patient addPatient(Patient patient) {
-        return patientRepository.save(patient);
+        Patient saved = patientRepository.save(patient);
+        PatientDTO patientDTO = new PatientDTO(
+                saved.getId(),
+                saved.getPatientNo(), saved.getFirstName(), saved.getLastName(),
+                saved.getPhoneNumber(), saved.getRole(), saved.getDateOfBirth(),
+                saved.getEmail()
+        );
+        return saved;
+    }
+
+    @Override
+    public List<PatientDTO> getPatientsSortedByLastName() {
+        return null;
+    }
+
+    @Override
+    public PatientDTO findPatient(Long patientId) {
+        return null;
+    }
+
+    @Override
+    public void deletePatient(Long id) {
+        patientRepository.deleteById(id);
+    }
+
+    @Override
+    public PatientDTO update(Patient patient, Long id) {
+        Patient patient1 = this.patientRepository.findById(id).orElse(null);
+
+        return null;
     }
 }

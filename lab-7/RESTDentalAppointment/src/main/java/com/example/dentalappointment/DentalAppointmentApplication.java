@@ -1,5 +1,6 @@
 package com.example.dentalappointment;
 
+import com.example.dentalappointment.dtos.PatientDTO;
 import com.example.dentalappointment.model.*;
 import com.example.dentalappointment.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
