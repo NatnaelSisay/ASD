@@ -2,6 +2,7 @@ package com.example.dentalappointment.controllers;
 
 import com.example.dentalappointment.dtos.PatientDTO;
 import com.example.dentalappointment.dtos.patient.PatientDTOAddress;
+import com.example.dentalappointment.dtos.patient.PatientRequest;
 import com.example.dentalappointment.exceptions.ItemNotFound;
 import com.example.dentalappointment.model.Patient;
 import com.example.dentalappointment.services.PatientService;
@@ -34,18 +35,11 @@ public class PatientController {
         return ResponseEntity.ok(new ResponseUnique<>(patient));
     }
 
-    //    add patient
-    @PostMapping
-    public ResponseEntity<PatientDTO> savePatient(@RequestBody Patient patient) {
-        Patient saved = patientService.addPatient(patient);
-        PatientDTO dto = new PatientDTO(
-                saved.getId(),
-                saved.getPatientNo(), saved.getFirstName(), saved.getLastName(),
-                saved.getPhoneNumber(), saved.getRole(), saved.getDateOfBirth(),
-                saved.getEmail()
-        );
 
-        return ResponseEntity.ok(dto);
+    @PostMapping
+    public ResponseEntity<ResponseUnique<PatientDTOAddress>> savePatient(@RequestBody PatientRequest patient) {
+        PatientDTOAddress savedPatient = patientService.addPatient(patient);
+        return ResponseEntity.ok(new ResponseUnique<>(savedPatient));
     }
 
     //    delete patient

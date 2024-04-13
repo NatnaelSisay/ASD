@@ -1,14 +1,12 @@
 package com.example.dentalappointment.dtos.patient;
 
 import com.example.dentalappointment.dtos.address.AddressResponse;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class PatientDTOAddress {
     private Long id;
@@ -19,7 +17,6 @@ public class PatientDTOAddress {
     private String role;
     private LocalDate dateOfBirth;
     private String email;
-    private String password;
     private AddressResponse address;
 
     public PatientDTOAddress(

@@ -3,6 +3,7 @@ package com.example.dentalappointment.services.impl;
 import com.example.dentalappointment.dtos.PatientDTO;
 import com.example.dentalappointment.dtos.patient.PatientAdapter;
 import com.example.dentalappointment.dtos.patient.PatientDTOAddress;
+import com.example.dentalappointment.dtos.patient.PatientRequest;
 import com.example.dentalappointment.exceptions.ItemNotFound;
 import com.example.dentalappointment.model.Patient;
 import com.example.dentalappointment.repositories.PatientRepository;
@@ -23,16 +24,23 @@ public class PatientServiceImpl implements PatientService {
         this.patientRepository = patientRepository;
     }
 
+
     @Override
-    public Patient addPatient(Patient patient) {
-        Patient saved = patientRepository.save(patient);
-        PatientDTO patientDTO = new PatientDTO(
-                saved.getId(),
-                saved.getPatientNo(), saved.getFirstName(), saved.getLastName(),
-                saved.getPhoneNumber(), saved.getRole(), saved.getDateOfBirth(),
-                saved.getEmail()
+    public PatientDTOAddress addPatient(PatientRequest patient) {
+        Patient p = new Patient(
+                patient.patientNo(),
+                patient.firstName(),
+                patient.lastName(),
+                patient.phoneNumber(),
+                patient.role(),
+                patient.dateOfBirth(),
+                patient.email(),
+                patient.password()
         );
-        return saved;
+
+        p = patientRepository.save(p);
+
+        return PatientAdapter.getPatientWithAddress(p);
     }
 
     @Override

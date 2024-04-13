@@ -1,6 +1,5 @@
 package com.example.dentalappointment;
 
-import com.example.dentalappointment.dtos.PatientDTO;
 import com.example.dentalappointment.model.*;
 import com.example.dentalappointment.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,22 +37,15 @@ public class DentalAppointmentApplication implements CommandLineRunner {
         var addr3 = new Address("1002N", "Fairfield", "IA", "52557");
 
 //        add Dentist
-        var dentist1 = new Dentist("Tony", "Smith", "2323", "Doctor",
-                "Surgical doc", "doc@gmail.com", "doc-password");
-        var dentist2 = new Dentist("Helen", "Pearson", "2323",
-                "Doctor", "Surgical doc", "doc@gmail.com", "doc-password");
-        var dentist3 = new Dentist(null, null, "Robin", "Pal", "2323",
-                "Doctor", "Surgical doc", "doc@gmail.com", "doc-password");
+        var dentist1 = new Dentist("Tony", "Smith", "2323", "Doctor", "Surgical doc", "doc@gmail.com", "doc-password");
+        var dentist2 = new Dentist("Helen", "Pearson", "2323", "Doctor", "Surgical doc", "doc@gmail.com", "doc-password");
+        var dentist3 = new Dentist(null, null, "Robin", "Pal", "2323", "Doctor", "Surgical doc", "doc@gmail.com", "doc-password");
 
 //        add Patient
-        var patient1 = new Patient("P100", "Gillan", "White", "23333",
-                "Patient", LocalDate.now(), "p1@gmail.com", "patient-password");
-        var patient2 = new Patient("P105", "Jil", "Bell", "23333",
-                "Patient", LocalDate.now(), "p1@gmail.com", "patient-password");
-        var patient3 = new Patient("P108", "Ian", "MacKay", "23333",
-                "Patient", LocalDate.now(), "p1@gmail.com", "patient-password");
-        var patient4 = new Patient("P110", "John", "Walker", "23333",
-                "Patient", LocalDate.now(), "p1@gmail.com", "patient-password");
+        var patient1 = new Patient("P100", "Gillan", "White", "23333", "Patient", LocalDate.now(), "p1@gmail.com", "patient-password");
+        var patient2 = new Patient("P105", "Jil", "Bell", "23333", "Patient", LocalDate.now(), "p1@gmail.com", "patient-password");
+        var patient3 = new Patient("P108", "Ian", "MacKay", "23333", "Patient", LocalDate.now(), "p1@gmail.com", "patient-password");
+        var patient4 = new Patient("P110", "John", "Walker", "23333", "Patient", LocalDate.now(), "p1@gmail.com", "patient-password");
 
 //        add Appointment
         var apt1 = new Appointment(LocalDate.now());
@@ -66,21 +58,21 @@ public class DentalAppointmentApplication implements CommandLineRunner {
         var s3 = new Surgery("S13", "Ear", "4344-3434-3434");
 
 //        construct
-        dentist1 = dentistService.addDentist(dentist1);
-        patient1 = patientService.addPatient(patient1);
-        s1 = surgeryService.addSurgery(s1);
-        apt1.setDentist(dentist1);
-        apt1.setPatient(patient1);
-        apt1.setSurgery(s1);
-
-        dentist2 = dentistService.addDentist(dentist2);
-        patient2 = patientService.addPatient(patient2);
-        s2 = surgeryService.addSurgery(s2);
-        apt2.setDentist(dentist2);
-        apt2.setPatient(patient2);
-        apt2.setSurgery(s2);
+//        dentist1 = dentistService.addDentist(dentist1);
+//        patient1 = patientService.addPatient(patient1);
+//        s1 = surgeryService.addSurgery(s1);
+//        apt1.setDentist(dentist1);
+//        apt1.setPatient(patient1);
+//        apt1.setSurgery(s1);
 //
-        appointmentService.addAppointment(apt1);
-        appointmentService.addAppointment(apt2);
+//        dentist2 = dentistService.addDentist(dentist2);
+//        patient2 = patientService.addPatient(patient2);
+//        s2 = surgeryService.addSurgery(s2);
+//        apt2.setDentist(dentist2);
+//        apt2.setPatient(patient2);
+//        apt2.setSurgery(s2);
+////
+//        appointmentService.addAppointment(apt1);
+//        appointmentService.addAppointment(apt2);
     }
 }

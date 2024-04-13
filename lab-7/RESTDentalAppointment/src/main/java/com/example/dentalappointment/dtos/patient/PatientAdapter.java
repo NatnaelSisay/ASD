@@ -6,6 +6,8 @@ import com.example.dentalappointment.model.Patient;
 
 public class PatientAdapter {
     public static PatientDTOAddress getPatientWithAddress(Patient patient) {
+        if (patient == null) return null;
+
         AddressResponse addressResponse = AddressAdapter.getAddressResponse(patient.getAddress());
         return new PatientDTOAddress(
                 patient.getId(),
