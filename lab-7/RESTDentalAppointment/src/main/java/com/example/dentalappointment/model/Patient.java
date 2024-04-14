@@ -8,12 +8,13 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.util.List;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 public class Patient {
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id")
     Address address;
 
@@ -46,4 +47,3 @@ public class Patient {
         this.password = password;
     }
 }
-

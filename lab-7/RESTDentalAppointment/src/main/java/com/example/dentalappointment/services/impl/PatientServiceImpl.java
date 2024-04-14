@@ -23,7 +23,9 @@ import java.util.Optional;
 public class PatientServiceImpl implements PatientService {
     PatientRepository patientRepository;
 
-    public PatientServiceImpl(PatientRepository patientRepository) {
+    public PatientServiceImpl(
+            PatientRepository patientRepository
+    ) {
         this.patientRepository = patientRepository;
     }
 
