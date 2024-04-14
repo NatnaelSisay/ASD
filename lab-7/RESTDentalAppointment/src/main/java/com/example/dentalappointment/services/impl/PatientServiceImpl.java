@@ -1,10 +1,13 @@
 package com.example.dentalappointment.services.impl;
 
 import com.example.dentalappointment.dtos.PatientDTO;
+import com.example.dentalappointment.dtos.address.AddressAdapter;
+import com.example.dentalappointment.dtos.address.AddressRequest;
 import com.example.dentalappointment.dtos.patient.PatientAdapter;
 import com.example.dentalappointment.dtos.patient.PatientDTOAddress;
-import com.example.dentalappointment.dtos.patient.PatientRequest;
+import com.example.dentalappointment.dtos.patient.PatientRequestWithAddress;
 import com.example.dentalappointment.exceptions.ItemNotFound;
+import com.example.dentalappointment.model.Address;
 import com.example.dentalappointment.model.Patient;
 import com.example.dentalappointment.repositories.PatientRepository;
 import com.example.dentalappointment.services.PatientService;
@@ -26,17 +29,23 @@ public class PatientServiceImpl implements PatientService {
 
 
     @Override
-    public PatientDTOAddress addPatient(PatientRequest patient) {
+    public PatientDTOAddress addPatient(PatientRequestWithAddress patientRequestWithAddress) {
         Patient p = new Patient(
-                patient.patientNo(),
-                patient.firstName(),
-                patient.lastName(),
-                patient.phoneNumber(),
-                patient.role(),
-                patient.dateOfBirth(),
-                patient.email(),
-                patient.password()
+                patientRequestWithAddress.firstName(),
+                patientRequestWithAddress.patientNo(),
+                patientRequestWithAddress.lastName(),
+                patientRequestWithAddress.phoneNumber(),
+                patientRequestWithAddress.role(),
+                patientRequestWithAddress.dateOfBirth(),
+                patientRequestWithAddress.email(),
+                patientRequestWithAddress.password()
         );
+
+        if (patientRequestWithAddress.address() != null) {
+            AddressRequest a = patientRequestWithAddress.address();
+            Address ad = AddressAdapter.getAddressFromRequest(a);
+            p.setAddress(ad);
+        }
 
         p = patientRepository.save(p);
 

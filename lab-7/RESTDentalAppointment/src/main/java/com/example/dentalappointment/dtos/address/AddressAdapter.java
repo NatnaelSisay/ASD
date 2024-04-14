@@ -13,4 +13,15 @@ public class AddressAdapter {
                 address.getZipcode()
         );
     }
+
+    public static Address getAddressFromRequest(AddressRequest a) {
+        if (a == null) return null;
+
+        return new Address(
+                a.street(),
+                a.city(),
+                a.state(),
+                a.zipcode()
+        );
+    }
 }

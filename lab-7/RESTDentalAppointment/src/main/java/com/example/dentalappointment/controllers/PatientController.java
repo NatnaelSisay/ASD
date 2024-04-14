@@ -3,6 +3,7 @@ package com.example.dentalappointment.controllers;
 import com.example.dentalappointment.dtos.PatientDTO;
 import com.example.dentalappointment.dtos.patient.PatientDTOAddress;
 import com.example.dentalappointment.dtos.patient.PatientRequest;
+import com.example.dentalappointment.dtos.patient.PatientRequestWithAddress;
 import com.example.dentalappointment.exceptions.ItemNotFound;
 import com.example.dentalappointment.model.Patient;
 import com.example.dentalappointment.services.PatientService;
@@ -37,7 +38,7 @@ public class PatientController {
 
 
     @PostMapping
-    public ResponseEntity<ResponseUnique<PatientDTOAddress>> savePatient(@RequestBody PatientRequest patient) {
+    public ResponseEntity<ResponseUnique<PatientDTOAddress>> savePatient(@RequestBody PatientRequestWithAddress patient) {
         PatientDTOAddress savedPatient = patientService.addPatient(patient);
         return ResponseEntity.ok(new ResponseUnique<>(savedPatient));
     }
