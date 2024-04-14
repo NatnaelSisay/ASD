@@ -1,6 +1,5 @@
 package com.example.dentalappointment.services.impl;
 
-import com.example.dentalappointment.dtos.PatientDTO;
 import com.example.dentalappointment.dtos.address.AddressAdapter;
 import com.example.dentalappointment.dtos.address.AddressRequest;
 import com.example.dentalappointment.dtos.patient.PatientAdapter;
@@ -84,9 +83,29 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public PatientDTO update(Patient patient, Long id) {
-        Patient patient1 = this.patientRepository.findById(id).orElse(null);
+    public PatientDTOAddress update(PatientRequestWithAddress patient, Long id) throws ItemNotFound {
+        Optional<Patient> fetchedPatient = this.patientRepository.findById(id);
 
-        return null;
+        if (fetchedPatient.isPresent()) {
+            Patient p = fetchedPatient.get();
+
+            p.setFirstName(patient.firstName());
+            p.setLastName(patient.lastName());
+            p.setPhoneNumber(patient.phoneNumber());
+            p.setDateOfBirth(patient.dateOfBirth());
+            p.setEmail(patient.email());
+            p.setPassword(patient.password());
+
+            Address ad = AddressAdapter.getAddressFromRequest(patient.address());
+            p.setAddress(ad);
+
+            p = this.patientRepository.save(p);
+
+            return PatientAdapter.getPatientWithAddress(p);
+        }
+
+        throw new ItemNotFound(String.format("Patient Not found: id=%s", id));
     }
+
+
 }

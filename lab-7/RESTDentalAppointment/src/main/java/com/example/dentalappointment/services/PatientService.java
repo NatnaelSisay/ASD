@@ -18,5 +18,5 @@ public interface PatientService {
 
     void deletePatient(Long id);
 
-    PatientDTO update(Patient patient, Long id);
+    PatientDTOAddress update(PatientRequestWithAddress patient, Long id) throws ItemNotFound;
 }

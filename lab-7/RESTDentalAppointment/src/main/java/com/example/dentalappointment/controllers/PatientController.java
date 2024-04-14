@@ -1,11 +1,8 @@
 package com.example.dentalappointment.controllers;
 
-import com.example.dentalappointment.dtos.PatientDTO;
 import com.example.dentalappointment.dtos.patient.PatientDTOAddress;
-import com.example.dentalappointment.dtos.patient.PatientRequest;
 import com.example.dentalappointment.dtos.patient.PatientRequestWithAddress;
 import com.example.dentalappointment.exceptions.ItemNotFound;
-import com.example.dentalappointment.model.Patient;
 import com.example.dentalappointment.services.PatientService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,7 +20,6 @@ public class PatientController {
         this.patientService = patientService;
     }
 
-    //    get patients
     @GetMapping
     public ResponseEntity<Response<PatientDTOAddress>> findAllPatients() {
         List<PatientDTOAddress> patients = patientService.getPatientsSortedByLastName();
@@ -43,18 +39,16 @@ public class PatientController {
         return ResponseEntity.ok(new ResponseUnique<>(savedPatient));
     }
 
-    //    delete patient
     @DeleteMapping("/{id}")
     public ResponseEntity deletePatient(@PathVariable Long id) {
         this.patientService.deletePatient(id);
         return ResponseEntity.ok(null);
     }
 
-    //    update patient
     @PutMapping("/{id}")
-    public ResponseEntity<PatientDTO> updatePatient(@RequestBody Patient patient, @PathVariable Long id) {
-        PatientDTO patientDTO = this.patientService.update(patient, id);
-        return ResponseEntity.ok(patientDTO);
+    public ResponseEntity<ResponseUnique<PatientDTOAddress>> updatePatient(@RequestBody PatientRequestWithAddress patient, @PathVariable Long id) throws ItemNotFound {
+        PatientDTOAddress patientDTO = this.patientService.update(patient, id);
+        return ResponseEntity.ok(new ResponseUnique<>(patientDTO));
     }
 //    search patient
 }
