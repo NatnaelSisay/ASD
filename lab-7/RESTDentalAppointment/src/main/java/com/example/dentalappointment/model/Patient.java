@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Patient {
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     Address address;
 
