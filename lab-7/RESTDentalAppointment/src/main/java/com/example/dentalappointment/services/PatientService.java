@@ -1,10 +1,8 @@
 package com.example.dentalappointment.services;
 
-import com.example.dentalappointment.dtos.PatientDTO;
 import com.example.dentalappointment.dtos.patient.PatientDTOAddress;
 import com.example.dentalappointment.dtos.patient.PatientRequestWithAddress;
 import com.example.dentalappointment.exceptions.ItemNotFound;
-import com.example.dentalappointment.model.Patient;
 
 import java.util.List;
 
@@ -19,4 +17,6 @@ public interface PatientService {
     void deletePatient(Long id);
 
     PatientDTOAddress update(PatientRequestWithAddress patient, Long id) throws ItemNotFound;
+
+    List<PatientDTOAddress> search(String searchString);
 }

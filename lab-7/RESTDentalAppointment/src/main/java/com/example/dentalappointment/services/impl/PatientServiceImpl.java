@@ -107,5 +107,12 @@ public class PatientServiceImpl implements PatientService {
         throw new ItemNotFound(String.format("Patient Not found: id=%s", id));
     }
 
+    @Override
+    public List<PatientDTOAddress> search(String searchString) {
+        List<Patient> patients = this.patientRepository.search(searchString);
+        List<PatientDTOAddress> patientDTOAddresses = PatientAdapter.getPatientDTOAddressList(patients);
+        return patientDTOAddresses;
+    }
+
 
 }

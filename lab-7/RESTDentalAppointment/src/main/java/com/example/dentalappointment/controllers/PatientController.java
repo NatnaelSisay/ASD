@@ -51,6 +51,12 @@ public class PatientController {
         return ResponseEntity.ok(new ResponseUnique<>(patientDTO));
     }
 //    search patient
+
+    @GetMapping("/search/{searchString}")
+    public ResponseEntity<Response<List<PatientDTOAddress>>> searchPatient(@PathVariable String searchString) {
+        List<PatientDTOAddress> patients = this.patientService.search(searchString);
+        return ResponseEntity.ok(new Response(patients));
+    }
 }
 
 @Data
