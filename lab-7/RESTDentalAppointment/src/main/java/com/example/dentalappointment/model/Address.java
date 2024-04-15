@@ -1,9 +1,6 @@
 package com.example.dentalappointment.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +21,7 @@ public class Address {
     @OneToOne(mappedBy = "address")
     private Surgery surgery;
 
-    @OneToOne(mappedBy = "address")
+    @OneToOne(mappedBy = "address", fetch = FetchType.LAZY)
     private Patient patient;
 
     public Address(String street, String city, String state, String zipcode) {

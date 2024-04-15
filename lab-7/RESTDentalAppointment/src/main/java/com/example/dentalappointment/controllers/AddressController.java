@@ -1,9 +1,11 @@
 package com.example.dentalappointment.controllers;
 
 import com.example.dentalappointment.dtos.address.AddressDTOPatient;
+import com.example.dentalappointment.dtos.address.AddressResponse;
 import com.example.dentalappointment.services.AddressService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,8 +22,9 @@ public class AddressController {
     }
 
     @GetMapping
-    public List<AddressDTOPatient> getAddresses() {
-        return null;
+    public ResponseEntity<AddressResponseList<AddressDTOPatient>> getAddresses() {
+        List<AddressDTOPatient> addressDTOPatients = this.addressService.findAll();
+        return ResponseEntity.ok(new AddressResponseList(addressDTOPatients));
     }
 }
 

@@ -9,7 +9,6 @@ public record PatientNoAddress(
         String phoneNumber,
         String role,
         LocalDate dateOfBirth,
-        String email,
-        String password
+        String email
 ) {
 }
