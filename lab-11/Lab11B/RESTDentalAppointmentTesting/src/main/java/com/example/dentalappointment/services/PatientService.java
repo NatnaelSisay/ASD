@@ -12,7 +12,7 @@ public interface PatientService {
 
     List<PatientDTOAddress> getPatientsSortedByLastName();
 
-    PatientDTOAddress findPatient(Long patientId) throws ItemNotFound;
+    PatientDTOAddress findPatient(Long patientId);
 
     void deletePatient(Long id);
 

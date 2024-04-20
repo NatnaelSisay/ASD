@@ -66,7 +66,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public PatientDTOAddress findPatient(Long patientId) throws ItemNotFound {
+    public PatientDTOAddress findPatient(Long patientId) {
         Optional<Patient> findPatient = patientRepository.findById(patientId);
 
         if (findPatient.isPresent()) {
