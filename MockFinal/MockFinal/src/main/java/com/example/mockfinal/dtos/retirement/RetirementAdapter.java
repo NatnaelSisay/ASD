@@ -35,4 +35,14 @@ public class RetirementAdapter {
 
         return result;
     }
+
+    public static RetirementPlan getRetirementFromRetirementRequest(RetirementRequest retirementRequest) {
+        RetirementPlan plan = new RetirementPlan(
+                retirementRequest.referenceNumber(),
+                retirementRequest.enrollmentDate(),
+                retirementRequest.retirementDate()
+        );
+
+        return plan;
+    }
 }
