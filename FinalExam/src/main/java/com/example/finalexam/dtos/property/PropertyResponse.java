@@ -1,7 +1,7 @@
 package com.example.finalexam.dtos.property;
 
 public record PropertyResponse(
-        Long propertyId,
+        Integer propertyId,
         String propertyRef,
         String city,
         String state,

@@ -36,4 +36,18 @@ public class PropertyAdapter {
 
         return propertyDTO;
     }
+
+    public static PropertyResponse getPropertyResponseFromProperty(Property property) {
+        if (property == null) return null;
+
+        PropertyResponse propertyResponse = new PropertyResponse(
+                property.getPropertyId(),
+                property.getPropertyRef(),
+                property.getCity(),
+                property.getState(),
+                property.getMonthlyRentalRate()
+        );
+
+        return propertyResponse;
+    }
 }

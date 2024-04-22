@@ -29,4 +29,10 @@ public class Lease {
     @ManyToOne
     @JoinColumn(name = "property_id")
     private Property property;
+
+    public Lease(Long leaseReferenceNumber, LocalDate startDate, LocalDate endDate) {
+        this.leaseReferenceNumber = leaseReferenceNumber;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 }
