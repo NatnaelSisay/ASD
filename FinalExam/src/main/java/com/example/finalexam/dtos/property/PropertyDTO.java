@@ -2,12 +2,14 @@ package com.example.finalexam.dtos.property;
 
 import com.example.finalexam.dtos.lease.LeaseResponse;
 
+import java.util.List;
+
 public record PropertyDTO(
-        Long propertyId,
+        Integer propertyId,
         String propertyRef,
         String city,
         String state,
         Double monthlyRentalRate,
-        LeaseResponse lease
+        List<LeaseResponse> lease
 ) {
 }

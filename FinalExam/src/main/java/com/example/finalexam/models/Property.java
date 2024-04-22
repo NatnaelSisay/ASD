@@ -28,4 +28,11 @@ public class Property {
     @NotNull
     @Column(nullable = false)
     private Double monthlyRentalRate;
+
+    public Property(String propertyRef, String city, String state, Double monthlyRentalRate) {
+        this.propertyRef = propertyRef;
+        this.city = city;
+        this.state = state;
+        this.monthlyRentalRate = monthlyRentalRate;
+    }
 }
