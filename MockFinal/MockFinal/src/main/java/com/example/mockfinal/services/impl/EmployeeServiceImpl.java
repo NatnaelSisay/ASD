@@ -8,15 +8,15 @@ import com.example.mockfinal.repositories.EmployeeRepository;
 import com.example.mockfinal.services.EmployeeService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
     EmployeeRepository repository;
 
-    public EmployeeServiceImpl(
-            EmployeeRepository employeeRepository
-    ) {
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
         this.repository = employeeRepository;
     }
 
@@ -36,7 +36,26 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<EmployeeResponse> findNextRetiree() {
-//        find list of employees, and from those find the retirement
-        return null;
+        List<Employee> employees = this.repository.findAll();
+        LocalDate nextMonth = LocalDate.now().plusMonths(1);
+        int nYear = nextMonth.getYear();
+        int nMonth = nextMonth.getMonthValue();
+
+        List<Employee> result = employees.stream().filter(employee -> {
+
+            LocalDate rDate = employee.getRetirementPlan().getRetirementDate();
+            System.out.println(rDate);
+            if (rDate.getYear() > nYear || rDate.getYear() < nYear) {
+                return false;
+            }
+            if (rDate.getMonthValue() != nMonth) {
+                return false;
+            }
+            return true;
+        }).toList();
+
+        result = result.stream().sorted(Comparator.comparing(a -> a.getRetirementPlan().getRetirementDate())).toList();
+
+        return EmployeeAdapter.getEmployeeResponseList(result);
     }
 }
