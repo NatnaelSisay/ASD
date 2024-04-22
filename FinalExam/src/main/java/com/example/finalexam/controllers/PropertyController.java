@@ -17,7 +17,7 @@ public class PropertyController {
         this.propertyService = propertyService;
     }
 
-    @GetMapping("")
+    @GetMapping(value = "")
     public ResponseEntity<List<PropertyDTO>> findAll(
             @PathVariable String state
     ) {
@@ -25,13 +25,14 @@ public class PropertyController {
         return ResponseEntity.ok(propertyDTOS);
     }
 
-    @GetMapping("/{state}")
+    @GetMapping(value = "/{state}")
     public ResponseEntity<List<PropertyDTO>> getPropertiesOfGivenState(
             @PathVariable String state
     ) {
         List<PropertyDTO> propertyDTOS = this.propertyService.findAllByState(state);
         return ResponseEntity.ok(propertyDTOS);
     }
+
 
     @PostMapping
     public ResponseEntity<PropertyDTO> saveProperty(

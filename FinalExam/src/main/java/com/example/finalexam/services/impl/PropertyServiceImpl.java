@@ -8,6 +8,7 @@ import com.example.finalexam.reporitory.PropertyRepository;
 import com.example.finalexam.services.PropertyService;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -31,6 +32,11 @@ public class PropertyServiceImpl implements PropertyService {
     public List<PropertyDTO> findAllByState(String state) {
         List<Property> properties = this.repository.findByState(state);
         List<PropertyDTO> propertyResponses = PropertyAdapter.getPropertyDTOListfromProperties(properties);
+
+        propertyResponses = propertyResponses.stream().sorted(
+                Comparator.comparing(PropertyDTO::monthlyRentalRate)
+        ).toList();
+
         return propertyResponses;
     }
 

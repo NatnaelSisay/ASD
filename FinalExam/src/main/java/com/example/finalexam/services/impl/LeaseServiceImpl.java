@@ -31,6 +31,16 @@ public class LeaseServiceImpl implements LeaseService {
     public List<LeaseDTO> findAll() {
         List<Lease> leaseList = this.leaseRepository.findAll();
         List<LeaseDTO> leaseResponses = LeaseAdapter.getLeaseReponseListFromLeases(leaseList);
+
+        leaseResponses = leaseResponses.stream().sorted(
+                (a, b) -> {
+                    var diff = a.leaseReferenceNumber().compareTo(b.leaseReferenceNumber());
+                    if (diff == 0) return 0;
+                    if (diff < 0) return 1;
+                    return -1;
+                }
+        ).toList();
+
         return leaseResponses;
     }
 
