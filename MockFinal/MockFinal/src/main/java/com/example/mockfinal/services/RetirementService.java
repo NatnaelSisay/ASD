@@ -1,8 +1,8 @@
 package com.example.mockfinal.services;
 
-import com.example.mockfinal.dtos.retirement.RetirementResponse;
+import com.example.mockfinal.dtos.retirement.RetirementDTO;
 
 
 public interface RetirementService {
-    public RetirementResponse getRetirement(Long id);
+    public RetirementDTO getRetirement(Long id);
 }

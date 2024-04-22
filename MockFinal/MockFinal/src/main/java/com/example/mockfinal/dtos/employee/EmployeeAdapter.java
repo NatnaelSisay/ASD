@@ -4,6 +4,8 @@ import com.example.mockfinal.dtos.retirement.RetirementAdapter;
 import com.example.mockfinal.models.Employee;
 import com.example.mockfinal.models.RetirementPlan;
 
+import java.util.List;
+
 public class EmployeeAdapter {
     public static EmployeeResponse getEmployeeResponseFromEmployee(Employee employee) {
         if (employee == null) return null;
@@ -45,5 +47,12 @@ public class EmployeeAdapter {
         employee.setRetirementPlan(retirementPlan);
 
         return employee;
+    }
+
+    public static List<EmployeeResponse> getEmployeeResponseList(List<Employee> employees) {
+        return employees
+                .stream()
+                .map(employee -> getEmployeeResponseFromEmployee(employee))
+                .toList();
     }
 }

@@ -30,11 +30,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<EmployeeResponse> finAll() {
-        return null;
+        List<Employee> employees = this.repository.findAll();
+        return EmployeeAdapter.getEmployeeResponseList(employees);
     }
 
     @Override
     public List<EmployeeResponse> findNextRetiree() {
+//        find list of employees, and from those find the retirement
         return null;
     }
 }
