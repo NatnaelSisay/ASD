@@ -50,4 +50,10 @@ public class PropertyAdapter {
 
         return propertyResponse;
     }
+
+    public static List<PropertyDTO> getPropertyDTOListfromProperties(List<Property> properties) {
+        return properties.stream().map(
+                property -> getPropertyDTOFromProperty(property)
+        ).toList();
+    }
 }

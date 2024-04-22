@@ -21,8 +21,17 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
+    public List<PropertyDTO> findAll() {
+        List<Property> properties = this.repository.findAll();
+        List<PropertyDTO> propertyResponses = PropertyAdapter.getPropertyDTOListfromProperties(properties);
+        return propertyResponses;
+    }
+
+    @Override
     public List<PropertyDTO> findAllByState(String state) {
-        return null;
+        List<Property> properties = this.repository.findByState(state);
+        List<PropertyDTO> propertyResponses = PropertyAdapter.getPropertyDTOListfromProperties(properties);
+        return propertyResponses;
     }
 
     @Override
