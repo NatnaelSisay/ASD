@@ -19,7 +19,7 @@ public class Property {
     //
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer propertyId;
     @NotNull
     @Column(nullable = false)
     private String propertyRef;
