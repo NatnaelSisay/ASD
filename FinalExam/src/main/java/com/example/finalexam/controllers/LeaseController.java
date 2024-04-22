@@ -3,7 +3,6 @@ package com.example.finalexam.controllers;
 import com.example.finalexam.dtos.RevenueDTO;
 import com.example.finalexam.dtos.lease.LeaseDTO;
 import com.example.finalexam.dtos.lease.LeaseRequest;
-import com.example.finalexam.dtos.lease.LeaseResponse;
 import com.example.finalexam.services.LeaseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +21,8 @@ public class LeaseController {
     }
 
     @GetMapping
-    public ResponseEntity<List<LeaseResponse>> getLeases() {
-        List<LeaseResponse> leaseResponses = this.leaseService.findAll();
+    public ResponseEntity<List<LeaseDTO>> getLeases() {
+        List<LeaseDTO> leaseResponses = this.leaseService.findAll();
         return ResponseEntity.ok(leaseResponses);
     }
 

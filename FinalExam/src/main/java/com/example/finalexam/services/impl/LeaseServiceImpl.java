@@ -4,7 +4,6 @@ import com.example.finalexam.dtos.RevenueDTO;
 import com.example.finalexam.dtos.lease.LeaseAdapter;
 import com.example.finalexam.dtos.lease.LeaseDTO;
 import com.example.finalexam.dtos.lease.LeaseRequest;
-import com.example.finalexam.dtos.lease.LeaseResponse;
 import com.example.finalexam.models.Lease;
 import com.example.finalexam.models.Property;
 import com.example.finalexam.reporitory.LeaseRepository;
@@ -28,8 +27,10 @@ public class LeaseServiceImpl implements LeaseService {
     }
 
     @Override
-    public List<LeaseResponse> findAll() {
-        return null;
+    public List<LeaseDTO> findAll() {
+        List<Lease> leaseList = this.leaseRepository.findAll();
+        List<LeaseDTO> leaseResponses = LeaseAdapter.getLeaseReponseListFromLeases(leaseList);
+        return leaseResponses;
     }
 
     @Override

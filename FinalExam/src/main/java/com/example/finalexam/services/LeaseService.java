@@ -8,7 +8,7 @@ import com.example.finalexam.dtos.lease.LeaseResponse;
 import java.util.List;
 
 public interface LeaseService {
-    public List<LeaseResponse> findAll();
+    public List<LeaseDTO> findAll();
 
     public RevenueDTO getRevenue(String state);
 

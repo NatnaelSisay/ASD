@@ -54,4 +54,13 @@ public class LeaseAdapter {
 
         return leaseDTO;
     }
+
+    public static List<LeaseDTO> getLeaseReponseListFromLeases(List<Lease> leaseList) {
+        if(leaseList == null) return null;
+
+        return leaseList.stream().map(
+                lease -> getLeaseDTOFromLease(lease)
+        ).toList();
+
+    }
 }
