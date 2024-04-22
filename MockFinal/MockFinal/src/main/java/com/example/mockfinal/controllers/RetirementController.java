@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/retirements")
 public class RetirementController {
 
-    @GetMapping("/emp/{employeeId}")
+    @GetMapping("/{employeeId}")
     public ResponseEntity<RetirementResponse> getRetirement(@PathVariable Long employeeId) {
         return ResponseEntity.ok(null);
     }
