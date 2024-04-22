@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RetirementPlan {
-    @OneToOne(mappedBy = "retirementPlan")
+    @OneToOne(mappedBy = "retirementPlan", cascade = CascadeType.ALL)
     Employee employee;
     //
     @Id
@@ -30,9 +30,15 @@ public class RetirementPlan {
     private LocalDate retirementDate;
     private Double monthlyContribution;
 
-    public RetirementPlan(String referenceNumber, LocalDate enrollmentDate, LocalDate retirementDate) {
+    public RetirementPlan(
+            String referenceNumber,
+            LocalDate enrollmentDate,
+            LocalDate retirementDate,
+            Double monthlyContribution
+    ) {
         this.referenceNumber = referenceNumber;
         this.retirementDate = retirementDate;
         this.enrollmentDate = enrollmentDate;
+        this.monthlyContribution = monthlyContribution;
     }
 }

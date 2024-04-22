@@ -40,6 +40,10 @@ public class EmployeeAdapter {
                 employeeRequest.lastName(),
                 employeeRequest.yearlySalary()
         );
+
+        RetirementPlan retirementPlan = RetirementAdapter.getRetirementFromRetirementRequest(employeeRequest.retirement());
+        employee.setRetirementPlan(retirementPlan);
+
         return employee;
     }
 }

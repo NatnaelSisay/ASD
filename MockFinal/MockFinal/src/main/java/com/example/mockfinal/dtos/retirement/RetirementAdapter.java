@@ -40,7 +40,8 @@ public class RetirementAdapter {
         RetirementPlan plan = new RetirementPlan(
                 retirementRequest.referenceNumber(),
                 retirementRequest.enrollmentDate(),
-                retirementRequest.retirementDate()
+                retirementRequest.retirementDate(),
+                retirementRequest.monthlyContribution()
         );
 
         return plan;
