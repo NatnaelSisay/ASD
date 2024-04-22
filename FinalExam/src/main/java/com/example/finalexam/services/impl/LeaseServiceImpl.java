@@ -11,6 +11,7 @@ import com.example.finalexam.reporitory.PropertyRepository;
 import com.example.finalexam.services.LeaseService;
 import org.springframework.stereotype.Service;
 
+import java.time.Period;
 import java.util.List;
 
 @Service
@@ -35,7 +36,21 @@ public class LeaseServiceImpl implements LeaseService {
 
     @Override
     public RevenueDTO getRevenue(String state) {
-        return null;
+        List<Lease> leaseList = this.leaseRepository.findByPropertyState(state);
+        Double total = 0.0;
+
+        for (Lease lease : leaseList) {
+            var diffMonths = Period.between(lease.getStartDate(), lease.getEndDate()).getMonths();
+            Double price = diffMonths * lease.getProperty().getMonthlyRentalRate();
+            total += price;
+        }
+
+        RevenueDTO revenueDTO = new RevenueDTO(
+                state,
+                total
+        );
+
+        return revenueDTO;
     }
 
     @Override
