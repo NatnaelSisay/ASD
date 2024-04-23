@@ -19,11 +19,11 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 @Component
 public class JwtFilter extends OncePerRequestFilter {
     UserDetailsService userDetailsService;
+    JwtUtil jwtUtil;
 
-    public JwtFilter(
-            SecurityUserDetailService userDetailsService
-    ) {
+    public JwtFilter(SecurityUserDetailService userDetailsService, JwtUtil jwtUtil) {
         this.userDetailsService = userDetailsService;
+        this.jwtUtil = jwtUtil;
     }
 
     @Override
@@ -36,26 +36,18 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String token = header.substring(7);
 
-        if (!token.equals("token")) {
+        if (!jwtUtil.validateToken(token)) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        UserDetails user = userDetailsService.loadUserByUsername("yung@miu.edu");
+        UserDetails user = userDetailsService.loadUserByUsername(jwtUtil.extractToken(token));
 
-        var usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-                user,
-                null,
-                user.getAuthorities()
-        );
+        var usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 
-        usernamePasswordAuthenticationToken.setDetails(
-                new WebAuthenticationDetailsSource().buildDetails(request)
-        );
+        usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
-        SecurityContextHolder
-                .getContext()
-                .setAuthentication(usernamePasswordAuthenticationToken);
+        SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
 
         filterChain.doFilter(request, response);
     }

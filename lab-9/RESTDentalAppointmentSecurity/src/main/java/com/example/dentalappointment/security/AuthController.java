@@ -2,6 +2,7 @@ package com.example.dentalappointment.security;
 
 import com.example.dentalappointment.security.models.LoginRequest;
 import com.example.dentalappointment.security.models.LoginResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +24,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(
             @RequestBody LoginRequest loginRequest
-    ) {
+    ) throws JsonProcessingException {
         LoginResponse response = this.loginService.login(loginRequest);
         return ResponseEntity.ok(response);
     }
