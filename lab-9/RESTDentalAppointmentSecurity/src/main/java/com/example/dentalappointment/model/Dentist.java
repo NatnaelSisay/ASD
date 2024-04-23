@@ -14,24 +14,13 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class Dentist extends User {
-    @OneToMany(
-            mappedBy = "dentist",
-            cascade = CascadeType.PERSIST
-    )
+    @OneToMany(mappedBy = "dentist", cascade = CascadeType.PERSIST)
     List<Appointment> appointments;
 
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
-    private String role;
     private String specialization;
 
     public Dentist(String firstName, String lastName, String phoneNumber, String role, String specialization, String email, String password) {
-        super(email, password);
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.role = role;
+        super(email, password, firstName, lastName, phoneNumber, role);
         this.specialization = specialization;
     }
 }

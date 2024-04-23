@@ -26,9 +26,23 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private String role;
+
     public User(String email, String password) {
         this.email = email;
         this.password = password;
+    }
+
+    public User(String email, String password, String firstName, String lastName, String phoneNumber, String role) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
     }
 
     @Override
@@ -38,7 +52,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.email;
+        return email;
     }
 
     @Override

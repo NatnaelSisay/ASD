@@ -18,26 +18,16 @@ public class Patient extends User {
     @JoinColumn(name = "address_id")
     Address address;
 
-    @OneToMany(
-            mappedBy = "patient",
-            cascade = CascadeType.PERSIST
-    )
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.PERSIST)
     List<Appointment> appointments;
 
     private String patientNo;
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
-    private String role;
+
     private LocalDate dateOfBirth;
 
     public Patient(String patientNo, String firstName, String lastName, String phoneNumber, String role, LocalDate dateOfBirth, String email, String password) {
-        super(email, password);
+        super(email, password, firstName, lastName, phoneNumber, role);
         this.patientNo = patientNo;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.role = role;
         this.dateOfBirth = dateOfBirth;
     }
 }
