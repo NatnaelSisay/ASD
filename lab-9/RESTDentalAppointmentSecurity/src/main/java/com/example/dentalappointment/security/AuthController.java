@@ -17,6 +17,7 @@ public class AuthController {
             LoginService loginService
     ) {
         this.loginService = loginService;
+
     }
 
     @PostMapping("/login")

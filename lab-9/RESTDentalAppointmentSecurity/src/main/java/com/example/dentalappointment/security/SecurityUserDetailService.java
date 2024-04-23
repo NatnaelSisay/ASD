@@ -28,6 +28,7 @@ public class SecurityUserDetailService implements UserDetailsService {
                 user.getPhoneNumber(),
                 user.getRole()
         );
+        result.setId(user.getId());
 
         return result;
     }
