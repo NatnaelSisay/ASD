@@ -19,6 +19,12 @@ public class ProductController {
         this.productService = productService;
     }
 
+    @GetMapping("/{product_id}")
+    public ResponseEntity<ResponseData<ProductDTO>> findById(@PathVariable Long product_id) {
+        ProductDTO productDTO = this.productService.findById(product_id);
+        return ResponseEntity.ok(new ResponseData<>(productDTO));
+    }
+
     @GetMapping
     public ResponseEntity<ResponseDataList> findAll() {
         List<ProductDTO> result = this.productService.findAll();
@@ -26,9 +32,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseData<ProductDTO>> save(
-            @RequestBody ProductRequest productRequest
-    ) {
+    public ResponseEntity<ResponseData<ProductDTO>> save(@RequestBody ProductRequest productRequest) {
         ProductDTO result = this.productService.save(productRequest);
         return ResponseEntity.ok(new ResponseData(result));
     }

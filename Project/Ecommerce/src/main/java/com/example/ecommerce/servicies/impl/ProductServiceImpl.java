@@ -36,6 +36,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDTO findById(Long id) {
-        return null;
+        Product product = this.productRepository.findById(id).orElse(null);
+        return ProductAdapter.getProductDTOFromProduct(product);
     }
 }
