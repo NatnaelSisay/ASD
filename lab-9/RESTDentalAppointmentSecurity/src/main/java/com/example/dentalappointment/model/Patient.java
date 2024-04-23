@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Patient {
+public class Patient extends User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     Address address;
@@ -24,26 +24,20 @@ public class Patient {
     )
     List<Appointment> appointments;
 
-    @Id
-    @GeneratedValue
-    private Long id;
     private String patientNo;
     private String firstName;
     private String lastName;
     private String phoneNumber;
     private String role;
     private LocalDate dateOfBirth;
-    private String email;
-    private String password;
 
     public Patient(String patientNo, String firstName, String lastName, String phoneNumber, String role, LocalDate dateOfBirth, String email, String password) {
+        super(email, password);
         this.patientNo = patientNo;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.role = role;
         this.dateOfBirth = dateOfBirth;
-        this.email = email;
-        this.password = password;
     }
 }
