@@ -19,11 +19,29 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    @ManyToOne
+    private String roles;
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id")
     private Address address;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<UserOrder> order;
     @OneToOne
     private Cart cart;
+
+    public User(String firstName, String lastName, String email, String password, String roles, Address address) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+        this.address = address;
+    }
+
+    public User(String firstName, String lastName, String email, String password, String roles) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+    }
 }
