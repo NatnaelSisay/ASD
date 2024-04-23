@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product {
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     List<Category> categories;
     @Id
     @GeneratedValue
@@ -21,7 +21,16 @@ public class Product {
     private String title;
     private String description;
     private Double unitPrice;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "inventory_id")
     private ProductInventory inventory;
+
+    public Product(String name, String title, String description, Double unitPrice) {
+        this.name = name;
+        this.title = title;
+        this.description = description;
+        this.unitPrice = unitPrice;
+    }
+
+
 }

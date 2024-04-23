@@ -19,4 +19,13 @@ public class ProductInventory {
     @OneToOne
     private Product product;
     private Long amountLeft;
+
+    public ProductInventory(Long amountLeft) {
+        this.amountLeft = amountLeft;
+    }
+
+    public ProductInventory(Product product, Long amountLeft) {
+        this.product = product;
+        this.amountLeft = amountLeft;
+    }
 }
