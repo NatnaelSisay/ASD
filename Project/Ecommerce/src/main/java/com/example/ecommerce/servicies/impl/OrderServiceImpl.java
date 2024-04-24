@@ -31,12 +31,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderResponse save(OrderRequest orderRequest) throws Exception {
-        System.out.println("---- Order Request --- ");
         System.out.println(orderRequest);
 
         User user = userRepository.findById(orderRequest.userId()).orElseThrow(() -> new Exception("user not found"));
-        System.out.println("--- User ---");
-
 
         final UserOrder order = new UserOrder();
         order.setUser(user);
@@ -62,5 +59,17 @@ public class OrderServiceImpl implements OrderService {
 
         OrderResponse orderResponse = OrderAdapter.getOrderResponseFromOrder(savedOrder);
         return orderResponse;
+    }
+
+    @Override
+    public List<OrderResponse> findAllByUserId(Long userId) {
+        List<UserOrder> orders = this.orderRepository.findByUserId(userId);
+        return OrderAdapter.getOrderResponseFromOrder(orders);
+    }
+
+    @Override
+    public List<OrderResponse> findAll() {
+        List<UserOrder> orders = this.orderRepository.findAll();
+        return OrderAdapter.getOrderResponseFromOrder(orders);
     }
 }
