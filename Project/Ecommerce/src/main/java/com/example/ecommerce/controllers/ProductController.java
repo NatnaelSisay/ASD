@@ -4,7 +4,9 @@ import com.example.ecommerce.dtos.ResponseData;
 import com.example.ecommerce.dtos.ResponseDataList;
 import com.example.ecommerce.dtos.product.ProductDTO;
 import com.example.ecommerce.dtos.product.ProductRequest;
+import com.example.ecommerce.models.Product;
 import com.example.ecommerce.servicies.ProductService;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,4 +38,20 @@ public class ProductController {
         ProductDTO result = this.productService.save(productRequest);
         return ResponseEntity.ok(new ResponseData(result));
     }
+
+    @PutMapping
+    public ResponseEntity<ResponseData<ProductDTO>> update(@RequestBody Product productRequest) {
+        ProductDTO result = this.productService.update(productRequest);
+        return ResponseEntity.ok(new ResponseData(result));
+    }
+
+    @DeleteMapping("/{product_id}")
+    public ResponseEntity deleteProduct(
+            @PathVariable Long product_id
+    ) {
+        this.productService.deleteById(product_id);
+        return ResponseEntity.ok(HttpEntity.EMPTY);
+    }
+
+
 }

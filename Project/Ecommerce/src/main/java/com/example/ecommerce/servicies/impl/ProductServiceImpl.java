@@ -39,4 +39,23 @@ public class ProductServiceImpl implements ProductService {
         Product product = this.productRepository.findById(id).orElse(null);
         return ProductAdapter.getProductDTOFromProduct(product);
     }
+
+    @Override
+    public void deleteById(Long productId) {
+        this.productRepository.deleteById(productId);
+    }
+
+    @Override
+    public ProductDTO update(Product productRequest) {
+        Product p = this.productRepository.findById(productRequest.getId()).orElse(null);
+        if (p == null) return null;
+
+        p.setName(productRequest.getName());
+        p.setTitle(productRequest.getTitle());
+        p.setDescription(productRequest.getDescription());
+        p.setUnitPrice(productRequest.getUnitPrice());
+
+        p = this.productRepository.save(p);
+        return ProductAdapter.getProductDTOFromProduct(p);
+    }
 }
