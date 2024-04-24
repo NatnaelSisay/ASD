@@ -20,4 +20,5 @@ public class UserOrder {
     private User user;
     @OneToMany(mappedBy = "order")
     private List<OrderItem> items;
+    private Double totalAmount;
 }
