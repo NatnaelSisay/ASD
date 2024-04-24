@@ -15,8 +15,13 @@ public class Cart {
     @Id
     @GeneratedValue
     private Long id;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private User user;
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<CartItem> items;
+
+    public Cart(User user, List<CartItem> items) {
+        this.user = user;
+        this.items = items;
+    }
 }
