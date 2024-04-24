@@ -7,4 +7,8 @@ public interface CartService {
     CartResponse save(CartRequest cartRequest) throws Exception;
 
     CartResponse findAByUserId(Long userId);
+
+    void deleteByUserId(Long userId);
+
+    CartResponse orderCartItems(Long userId);
 }

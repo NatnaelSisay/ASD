@@ -38,17 +38,17 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderResponse save(OrderRequest orderRequest) throws Exception {
+    public OrderResponse save(OrderRequest orderRequest) {
         System.out.println(orderRequest);
 
-        User user = userRepository.findById(orderRequest.userId()).orElseThrow(() -> new Exception("user not found"));
+        User user = userRepository.findById(orderRequest.userId()).orElse(null);
 
         final UserOrder order = new UserOrder();
         order.setUser(user);
 
         List<OrderItem> orderItems = orderRequest.orderItems().stream().map(item -> {
             try {
-                Product product = productRepository.findById(item.productId()).orElseThrow(() -> new Exception("Product not found"));
+                Product product = productRepository.findById(item.productId()).orElse(null);
                 double itemPrice = item.quantity() * product.getUnitPrice();
                 return orderItemRepository.save(new OrderItem(order, product, item.quantity(), itemPrice));
             } catch (Exception e) {

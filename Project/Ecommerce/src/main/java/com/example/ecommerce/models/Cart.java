@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,7 +19,7 @@ public class Cart {
     @OneToOne(cascade = CascadeType.PERSIST)
     private User user;
     @OneToMany(mappedBy = "cart", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    private List<CartItem> items;
+    private List<CartItem> items = new ArrayList<>();
 
     public Cart(User user, List<CartItem> items) {
         this.user = user;

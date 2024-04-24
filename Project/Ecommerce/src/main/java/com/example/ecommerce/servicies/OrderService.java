@@ -6,7 +6,7 @@ import com.example.ecommerce.dtos.order.OrderResponse;
 import java.util.List;
 
 public interface OrderService {
-    OrderResponse save(OrderRequest orderRequest) throws Exception;
+    OrderResponse save(OrderRequest orderRequest);
 
     List<OrderResponse> findAllByUserId(Long userId);
 

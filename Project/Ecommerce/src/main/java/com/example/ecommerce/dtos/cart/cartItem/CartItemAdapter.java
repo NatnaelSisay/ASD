@@ -6,6 +6,8 @@ import java.util.List;
 
 public class CartItemAdapter {
     public static CartItemResponse getCartItemResponseFromCart(CartItem item) {
+        if (item == null) return null;
+
         CartItemResponse response = new CartItemResponse(
                 item.getId(),
                 item.getProduct().getId(),
@@ -13,10 +15,12 @@ public class CartItemAdapter {
                 item.getQuantity(),
                 item.getPrice()
         );
+
         return response;
     }
 
     public static List<CartItemResponse> getCartItemResponseFromCart(List<CartItem> items) {
+        if (items == null) return null;
         return items.stream().map(
                 item -> getCartItemResponseFromCart(item)
         ).toList();

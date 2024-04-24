@@ -25,7 +25,7 @@ public class User {
     private Address address;
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<UserOrder> order;
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     private Cart cart;
 
     public User(String firstName, String lastName, String email, String password, String roles, Address address) {
