@@ -14,6 +14,11 @@ import java.util.List;
 public class Product {
     @ManyToMany(cascade = CascadeType.PERSIST)
     List<Category> categories;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<OrderItem> orderItems;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<CartItem> cartItems;
+    //
     @Id
     @GeneratedValue
     private Long id;
@@ -24,6 +29,7 @@ public class Product {
     @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "inventory_id")
     private ProductInventory inventory;
+    private Boolean deleted = false;
 
     public Product(String name, String title, String description, Double unitPrice) {
         this.name = name;
@@ -32,5 +38,7 @@ public class Product {
         this.unitPrice = unitPrice;
     }
 
-
+    public void markAsDeleted() {
+        this.deleted = true;
+    }
 }

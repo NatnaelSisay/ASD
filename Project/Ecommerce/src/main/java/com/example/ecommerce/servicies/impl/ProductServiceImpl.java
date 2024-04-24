@@ -31,6 +31,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDTO> findAll() {
         List<Product> products = this.productRepository.findAll();
+        products = this.filterDeletedProducts(products);
+
         return ProductAdapter.getProductDTOFromProduct(products);
     }
 
@@ -42,7 +44,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteById(Long productId) {
-        this.productRepository.deleteById(productId);
+        Product product = this.productRepository.findById(productId).orElse(null);
+        if (product == null) return;
+
+        product.setDeleted(true);
+        this.productRepository.save(product);
     }
 
     @Override
@@ -57,5 +63,26 @@ public class ProductServiceImpl implements ProductService {
 
         p = this.productRepository.save(p);
         return ProductAdapter.getProductDTOFromProduct(p);
+    }
+
+    @Override
+    public void restoreProduct(Long productId) {
+        Product product = this.productRepository.findById(productId).orElse(null);
+        System.out.println("---- product found: " + productId);
+        if (product == null) return;
+        product.setDeleted(false);
+
+        this.productRepository.save(product);
+    }
+
+    private List<Product> filterDeletedProducts(List<Product> products) {
+        return products.stream().filter(
+                product -> {
+                    if (product.getDeleted() == null || product.getDeleted()) {
+                        return false;
+                    }
+                    return true;
+                }
+        ).toList();
     }
 }

@@ -39,6 +39,14 @@ public class ProductController {
         return ResponseEntity.ok(new ResponseData(result));
     }
 
+    @PostMapping("/{product_id}/restore")
+    public ResponseEntity<?> restoreProduct(
+            @PathVariable Long product_id
+    ) {
+        this.productService.restoreProduct(product_id);
+        return ResponseEntity.ok(HttpEntity.EMPTY);
+    }
+
     @PutMapping
     public ResponseEntity<ResponseData<ProductDTO>> update(@RequestBody Product productRequest) {
         ProductDTO result = this.productService.update(productRequest);

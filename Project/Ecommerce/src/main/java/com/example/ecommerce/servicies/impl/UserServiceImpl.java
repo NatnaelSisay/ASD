@@ -7,8 +7,10 @@ import com.example.ecommerce.models.User;
 import com.example.ecommerce.repositories.UserRepository;
 import com.example.ecommerce.servicies.UserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
     UserRepository userRepository;
 
