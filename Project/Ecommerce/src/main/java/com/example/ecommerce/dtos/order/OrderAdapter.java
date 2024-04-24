@@ -15,7 +15,7 @@ public class OrderAdapter {
                 order.getId(),
                 order.getUser().getId(),
                 order.getTotalAmount(),
-                OrderItemAdapter.getOrderResponseFromOder(order.getItems())
+                OrderItemAdapter.getOrderItemResponseFromOder(order.getItems())
         );
 
         return orderResponse;

@@ -18,7 +18,7 @@ public class UserOrder {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
     private List<OrderItem> items;
     private Double totalAmount;
 }

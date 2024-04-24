@@ -7,6 +7,7 @@ import com.example.ecommerce.models.OrderItem;
 import com.example.ecommerce.models.Product;
 import com.example.ecommerce.models.User;
 import com.example.ecommerce.models.UserOrder;
+import com.example.ecommerce.repositories.OrderItemRepository;
 import com.example.ecommerce.repositories.OrderRepository;
 import com.example.ecommerce.repositories.ProductRepository;
 import com.example.ecommerce.repositories.UserRepository;
@@ -22,11 +23,18 @@ public class OrderServiceImpl implements OrderService {
     OrderRepository orderRepository;
     UserRepository userRepository;
     ProductRepository productRepository;
+    OrderItemRepository orderItemRepository;
 
-    public OrderServiceImpl(OrderRepository orderRepository, UserRepository userRepository, ProductRepository productRepository) {
+    public OrderServiceImpl(
+            OrderRepository orderRepository,
+            UserRepository userRepository,
+            ProductRepository productRepository,
+            OrderItemRepository orderItemRepository
+    ) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
         this.productRepository = productRepository;
+        this.orderItemRepository = orderItemRepository;
     }
 
     @Override
@@ -42,9 +50,7 @@ public class OrderServiceImpl implements OrderService {
             try {
                 Product product = productRepository.findById(item.productId()).orElseThrow(() -> new Exception("Product not found"));
                 double itemPrice = item.quantity() * product.getUnitPrice();
-
-                return new OrderItem(order, product, item.quantity(), itemPrice);
-
+                return orderItemRepository.save(new OrderItem(order, product, item.quantity(), itemPrice));
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

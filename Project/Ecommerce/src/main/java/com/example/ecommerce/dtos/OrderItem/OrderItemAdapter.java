@@ -6,7 +6,7 @@ import java.util.List;
 
 public class OrderItemAdapter {
 
-    public static OrderItemResponse getOrderResponseFromOder(OrderItem item) {
+    public static OrderItemResponse getOrderItemResponseFromOder(OrderItem item) {
         OrderItemResponse orderItemResponse = new OrderItemResponse(
                 item.getOrder().getId(),
                 item.getProduct().getId(),
@@ -16,7 +16,7 @@ public class OrderItemAdapter {
         return orderItemResponse;
     }
 
-    public static List<OrderItemResponse> getOrderResponseFromOder(List<OrderItem> items) {
-        return items.stream().map(item -> getOrderResponseFromOder(item)).toList();
+    public static List<OrderItemResponse> getOrderItemResponseFromOder(List<OrderItem> items) {
+        return items.stream().map(item -> getOrderItemResponseFromOder(item)).toList();
     }
 }
