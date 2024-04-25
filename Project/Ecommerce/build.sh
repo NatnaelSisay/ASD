@@ -2,7 +2,7 @@
 
 mvn clean package -P prod
 
-docker build -t ecommerce_server .
+docker build -t ecommerce-server .
 
 # push the image to the registry
 

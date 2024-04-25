@@ -2,6 +2,7 @@ version: '3.1'
 
 services:
   server:
+    #    image: javaethio/ecommerce-server
     build: .
     restart: always
     ports:
