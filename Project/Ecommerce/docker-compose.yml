@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+  server:
+    build: .
+    restart: always
+    ports:
+      - 8081:8081
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=jdbc:mysql://db/ecommerce
+      - DB_USER=root
+      - DB_PASSWORD=example
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+
