@@ -4,6 +4,8 @@ import com.example.ecommerce.dtos.ResponseData;
 import com.example.ecommerce.dtos.ResponseDataList;
 import com.example.ecommerce.dtos.user.UserDTO;
 import com.example.ecommerce.dtos.user.UserRequest;
+import com.example.ecommerce.security.AuthRequest;
+import com.example.ecommerce.security.AuthResponse;
 import com.example.ecommerce.security.AuthService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,5 +33,13 @@ public class AuthController {
     ) {
         UserDTO userDTO = this.authService.signup(userRequest);
         return ResponseEntity.ok(new ResponseData(userDTO));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<ResponseData> login(
+            @RequestBody AuthRequest authRequest
+    ) {
+        AuthResponse authResponse = this.authService.login(authRequest);
+        return ResponseEntity.ok(new ResponseData(authResponse));
     }
 }
