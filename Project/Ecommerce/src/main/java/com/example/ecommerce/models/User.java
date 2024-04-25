@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,7 +20,8 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    private String roles;
+    @ManyToMany
+    private List<Role> roles = new ArrayList<>();
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "address_id")
     private Address address;
@@ -28,20 +30,19 @@ public class User {
     @OneToOne(fetch = FetchType.EAGER)
     private Cart cart;
 
-    public User(String firstName, String lastName, String email, String password, String roles, Address address) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.roles = roles;
+    public User(String firstName, String lastName, String email, String password, List<Role> role, Address address) {
+        this(firstName, lastName, email, password, role);
         this.address = address;
     }
 
-    public User(String firstName, String lastName, String email, String password, String roles) {
+    public User(String firstName, String lastName, String email, String password, List<Role> role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.roles = roles;
+
+        if (role != null) {
+            this.roles = role;
+        }
     }
 }

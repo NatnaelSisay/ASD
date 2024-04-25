@@ -10,7 +10,6 @@ public record UserResponse(
         String firstName,
         String lastName,
         String email,
-        String roles,
         CartResponse cart,
         List<OrderResponse> orders
 ) {
