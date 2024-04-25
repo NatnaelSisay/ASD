@@ -95,4 +95,18 @@
         </plugins>
     </build>
 
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <spring.profiles.active>prod</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+        </profile>
+        <profile>
+            <id>prod</id>
+        </profile>
+    </profiles>
 </project>

@@ -9,7 +9,8 @@ services:
     depends_on:
       - db
     environment:
-      - DB_HOST=jdbc:mysql://db/ecommerce
+      - DB_HOST=jdbc:mysql://db
+      - DB_NAME=${DB_NAME:-dev_ecommerce}
       - DB_USER=root
       - DB_PASSWORD=example
   db:
