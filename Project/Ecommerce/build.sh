@@ -1,6 +1,6 @@
 # make sure mysql is running, look at application-*.properties for reference
 
-mvn clean package -P prod
+mvn clean package -P test
 
 docker build -t ecommerce-server .
 
