@@ -39,6 +39,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         auth -> {
                             auth.requestMatchers("/auth/**").permitAll();
+                            auth.requestMatchers("/actuator/**").permitAll();
                             auth.requestMatchers(HttpMethod.GET, "/api/v1/products").permitAll();
                             auth.anyRequest().authenticated();
                         }
