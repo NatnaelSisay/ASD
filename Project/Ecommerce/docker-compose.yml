@@ -2,26 +2,21 @@ version: '3.1'
 
 services:
   server:
-    image: javaethio/ecommerce-server:latest
-    #    build: .
-    restart: always
+    #    image: javaethio/ecommerce-server:latest
+    build: .
+    #    restart: on-failure
     ports:
       - 8081:8081
     depends_on:
       - db
     environment:
       - DB_HOST=db
-      - DB_NAME=ecommerce_dev
-      - DB_USER=root
-      - DB_PASSWORD=examplepassword
   db:
-    image: mysql:8.0.33
+    image: postgres
     restart: always
     ports:
-      - 3306:3306
+      - 5432:5432
     environment:
-      MYSQL_DATABASE: ecommerce_dev
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: examplepassword
-      MYSQL_ROOT_PASSWORD: examplepassword
+      POSTGRES_PASSWORD: examplepassword
+
 
