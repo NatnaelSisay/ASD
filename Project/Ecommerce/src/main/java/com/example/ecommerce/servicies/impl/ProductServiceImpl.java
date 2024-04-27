@@ -68,7 +68,6 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void restoreProduct(Long productId) {
         Product product = this.productRepository.findById(productId).orElse(null);
-        System.out.println("---- product found: " + productId);
         if (product == null) return;
         product.setDeleted(false);
 
