@@ -40,6 +40,7 @@ public class SecurityConfig {
                         auth -> {
                             auth.requestMatchers("/auth/**").permitAll();
                             auth.requestMatchers("/actuator/**").permitAll();
+                            auth.requestMatchers("/swagger-ui/**").permitAll();
                             auth.requestMatchers(HttpMethod.GET, "/api/v1/products").permitAll();
                             auth.anyRequest().authenticated();
                         }
