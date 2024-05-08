@@ -1,5 +1,10 @@
 pipeline{
-  agent any
+  agent {
+    node {
+        label 'docker-maven'
+        customWorkspace '/home/jenkins/agent'    
+    }
+  }
   stages{
     stage("Start"){
       steps{
