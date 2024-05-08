@@ -7,9 +7,21 @@ pipeline{
       }
     }
 
+    stage("Maven Version"){
+            steps {
+                sh "mvn --version"
+            }
+        }
+        
+    stage("Docker Version"){
+        steps {
+            sh "docker --version"
+        }
+    }
+
     stage("Build Image"){
       steps {
-        sh "./Project/Ecommerce/build.sh"
+        sh "cd ./Project/Ecommerce && ./build.sh"
       }
     }
   }
