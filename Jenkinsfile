@@ -8,9 +8,11 @@ pipeline{
     }
   }
 
-  stages("Build Image"){
-    steps {
-      sh "./Project/Ecommerce/build.sh"
+  stages{
+    stage("Build Image"){
+      steps {
+        sh "./Project/Ecommerce/build.sh"
+      }
     }
   }
 }
