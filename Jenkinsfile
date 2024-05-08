@@ -6,9 +6,7 @@ pipeline{
         echo "starting jenkins"
       }
     }
-  }
 
-  stages{
     stage("Build Image"){
       steps {
         sh "./Project/Ecommerce/build.sh"
