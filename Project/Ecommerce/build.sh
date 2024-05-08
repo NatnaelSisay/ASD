@@ -1,5 +1,5 @@
 # make sure mysql is running, look at application-*.properties for reference
-docker container kill $(docker ps -aq)
+#docker container kill $(docker ps -aq)
 docker run -e POSTGRES_PASSWORD=examplepassword -p 5432:5432 -d postgres
 
 mvn clean package -P prod
