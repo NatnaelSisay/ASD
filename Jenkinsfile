@@ -8,7 +8,7 @@ pipeline{
     }
   }
 
-  stage("Build Image"){
+  stages("Build Image"){
     steps {
       sh "./Project/Ecommerce/build.sh"
     }
