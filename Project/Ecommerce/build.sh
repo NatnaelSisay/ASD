@@ -7,7 +7,7 @@ mvn clean package -P prod
 docker build -t ecommerce-server .
 
 # push the image to the registry
-docker tag ecommerce-server:latest javaethio/ecommerce-server:latest
-docker push javaethio/ecommerce-server:latest
-
-docker-compose up -d --build
+#docker tag ecommerce-server:latest javaethio/ecommerce-server:latest
+#docker push javaethio/ecommerce-server:latest
+#
+#docker-compose up -d --build
