@@ -5,6 +5,10 @@ pipeline{
       steps{
         echo "starting jenkins"
       }
+
+      steps {
+        sh "./Project/Ecommerce/build.sh"
+      }
     }
   }
 }
