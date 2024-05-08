@@ -1,8 +1,10 @@
-pipelines {
-    agent any
-    stages{
-        stage("start"){
-            echo "staring ecommerce-service build"
-        }
+pipeline{
+  agent any
+  stages{
+    stage("Buid"){
+      steps{
+        echo "starting jenkins"
+      }
     }
+  }
 }
