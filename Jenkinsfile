@@ -6,11 +6,11 @@ pipeline{
         echo "starting jenkins"
       }
     }
+  }
 
-    stage("Build Image"{
-      steps {
-        sh "./Project/Ecommerce/build.sh"
-      }
-    })
+  stage("Build Image"){
+    steps {
+      sh "./Project/Ecommerce/build.sh"
+    }
   }
 }
